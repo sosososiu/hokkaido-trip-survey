@@ -1,1 +1,192 @@
-<placeholder>
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>北海道冬遊｜團友取態問卷</title>
+<style>
+  :root { --navy:#0e2a43; --gold:#c4a35a; --ice:#e8f2f8; --warm:#f4efe6; --ink:#1a2330; --muted:#5b6b7a; --teal:#2a6f7f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: "Noto Sans TC", "PingFang HK", "Hiragino Sans GB", sans-serif; color:var(--ink); background:#f3f6f8; }
+  header { background:var(--navy); color:#fff; padding:28px 20px 24px; }
+  header .kicker { color:var(--gold); font-size:12px; letter-spacing:.08em; }
+  h1 { margin:8px 0 6px; font-size:26px; }
+  header p { margin:0; color:#d5e0ea; font-size:14px; line-height:1.55; }
+  main { max-width:720px; margin:0 auto; padding:16px; }
+  .card { background:#fff; border-radius:14px; padding:18px; margin:14px 0; box-shadow:0 1px 8px rgba(14,42,67,.06); }
+  .card h2 { margin:0 0 8px; font-size:18px; color:var(--navy); }
+  .hint { color:var(--muted); font-size:13px; line-height:1.55; margin:0 0 14px; }
+  label.q { display:block; font-weight:700; margin:14px 0 8px; }
+  .opt { display:flex; gap:10px; align-items:flex-start; padding:8px 0; font-size:15px; }
+  input[type=text], textarea, select { width:100%; padding:10px 12px; border:1px solid #d5dee6; border-radius:10px; font:inherit; }
+  textarea { min-height:90px; }
+  .scale { display:flex; gap:8px; flex-wrap:wrap; }
+  .scale label { background:var(--ice); padding:8px 12px; border-radius:999px; font-size:13px; }
+  button { background:var(--navy); color:#fff; border:0; border-radius:10px; padding:14px 18px; font:inherit; font-weight:700; width:100%; cursor:pointer; }
+  button.sec { background:#fff; color:var(--navy); border:1px solid #c9d5de; margin-top:8px; }
+  .done { display:none; }
+  .done pre { white-space:pre-wrap; background:var(--warm); padding:14px; border-radius:10px; font-size:13px; }
+  footer { text-align:center; color:var(--muted); font-size:12px; padding:8px 0 28px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">HOKKAIDO · 29 NOV – 8 DEC 2026</div>
+  <h1>團友取態問卷</h1>
+  <p>先睇簡介，再擇。小樺／定山溪如果過夜，就要削札幌晚數。二世古 4 晚建議唔郁。</p>
+</header>
+<main>
+<form id="f">
+  <div class="card">
+    <h2>而家暫定骨架</h2>
+    <p class="hint">札幌 11/29–12/4（5晚，食燈市基地）→ 二世古 12/4–12/8（4晚滑雪）。小樺建議 12/1 日遊。定山溪建議 12/2 日歸。統籌建議兩個都唔過夜。</p>
+    <label class="q">你嘅名</label>
+    <input name="name" required placeholder="例如：阿明">
+  </div>
+  <div class="card">
+    <h2>① 札幌</h2>
+    <p class="hint">十二月頭未有雪祭。主場係白色燈樹節（大通至12/25）、聖誕市集、食、地下街。住站南口或大通／狸小路最方便。</p>
+    <div id="sapporo"></div>
+    <label class="q">札幌節奏</label>
+    <label class="opt"><input type="radio" name="pace" value="想行得鬆（食同燈為主）" required> 想行得鬆（食同燈為主）</label>
+    <label class="opt"><input type="radio" name="pace" value="想塞滿景點"> 想塞滿景點</label>
+    <label class="opt"><input type="radio" name="pace" value="其中一日想留酒店休息"> 其中一日想留酒店休息</label>
+  </div>
+  <div class="card">
+    <h2>② 小樺：去唔去、住唔住</h2>
+    <p class="hint">JR 約 32–40 分鐘。運河、青の運河藍燈（11/1–1/31）、壽司、玻璃店一日走得完。日遊唔搬行李；住一晚札幌少一晚。</p>
+    <label class="q">小樺點安排？</label>
+    <label class="opt"><input type="radio" name="otaru" value="日遊就夠（建議）" required> 日遊就夠（建議）</label>
+    <label class="opt"><input type="radio" name="otaru" value="想住小樺 1 晚"> 想住小樺 1 晚</label>
+    <label class="opt"><input type="radio" name="otaru" value="小樺都唔想去"> 小樺都唔想去</label>
+    <label class="opt"><input type="radio" name="otaru" value="跟大多數"> 跟大多數</label>
+    <label class="q">如果住，想住邊？</label>
+    <label class="opt"><input type="radio" name="otaru_stay" value="運河附近" required> 運河附近</label>
+    <label class="opt"><input type="radio" name="otaru_stay" value="車站附近就得"> 車站附近就得</label>
+    <label class="opt"><input type="radio" name="otaru_stay" value="不適用"> 不適用</label>
+    <label class="q">小樺有興趣（可多選）</label>
+    <div id="otaru_int"></div>
+  </div>
+  <div class="card">
+    <h2>③ 定山溪：去唔去、住唔住</h2>
+    <p class="hint">巴士約 60 分鐘。日歸浸湯，行吊橋同足湯，黃昏返札幌。二世古酒店好多都有湯。</p>
+    <label class="q">定山溪點安排？</label>
+    <label class="opt"><input type="radio" name="jozan" value="日歸浸湯（建議）" required> 日歸浸湯（建議）</label>
+    <label class="opt"><input type="radio" name="jozan" value="想住定山溪 1 晚"> 想住定山溪 1 晚</label>
+    <label class="opt"><input type="radio" name="jozan" value="定山溪都唔想去"> 定山溪都唔想去</label>
+    <label class="opt"><input type="radio" name="jozan" value="跟大多數"> 跟大多數</label>
+    <label class="q">如果去，想點玩？</label>
+    <label class="opt"><input type="radio" name="jozan_how" value="只要湯" required> 只要湯</label>
+    <label class="opt"><input type="radio" name="jozan_how" value="湯 + 行橋影相"> 湯 + 行橋影相</label>
+    <label class="opt"><input type="radio" name="jozan_how" value="不適用"> 不適用</label>
+    <label class="q">有冇紋身？</label>
+    <label class="opt"><input type="radio" name="tattoo" value="冇" required> 冇</label>
+    <label class="opt"><input type="radio" name="tattoo" value="有"> 有</label>
+  </div>
+  <div class="card">
+    <h2>④ 其他 ＋ 食</h2>
+    <label class="q">可選活動</label>
+    <div id="extra"></div>
+    <label class="q">想食咧</label>
+    <div id="food"></div>
+    <label class="q">行路同耐寒</label>
+    <label class="opt"><input type="radio" name="walk" value="行得動、唔怕凍" required> 行得動、唔怕凍</label>
+    <label class="opt"><input type="radio" name="walk" value="唔想行太多雪路"> 唔想行太多雪路</label>
+    <label class="opt"><input type="radio" name="walk" value="需要較多休息"> 需要較多休息</label>
+    <label class="q">二世古會唔會滑雪？</label>
+    <label class="opt"><input type="radio" name="ski" value="會滑雪（二世古為主）" required> 會滑雪（二世古為主）</label>
+    <label class="opt"><input type="radio" name="ski" value="唔滑，跟住玩村／浸湯"> 唔滑，跟住玩村／浸湯</label>
+    <label class="q">滑雪意欲</label>
+    <label class="opt"><input type="radio" name="ski_level" value="高" required> 高</label>
+    <label class="opt"><input type="radio" name="ski_level" value="中"> 中</label>
+    <label class="opt"><input type="radio" name="ski_level" value="低"> 低</label>
+    <label class="q">12/8 想早走定盡滑</label>
+    <label class="opt"><input type="radio" name="leave" value="盡滑到最後" required> 盡滑到最後</label>
+    <label class="opt"><input type="radio" name="leave" value="想早少少走"> 想早少少走</label>
+    <label class="opt"><input type="radio" name="leave" value="視航班（未定）"> 視航班（未定）</label>
+    <label class="q">札幌住宿預算</label>
+    <label class="opt"><input type="radio" name="budget" value="中價 ¥15,000–25,000" required> 中價 ¥15,000–25,000</label>
+    <label class="opt"><input type="radio" name="budget" value="可以高少少"> 可以高少少</label>
+    <label class="opt"><input type="radio" name="budget" value="平過一切"> 平過一切</label>
+    <label class="q">備註</label>
+    <textarea name="note" placeholder="過敏、想食、不想去、房間喜好"></textarea>
+  </div>
+  <button type="submit">提交並產生摘要</button>
+</form>
+<div class="card done" id="done">
+  <h2>已記錄</h2>
+  <p class="hint">將下面文字複製，WhatsApp 傳返統籌。</p>
+  <pre id="out"></pre>
+  <button type="button" onclick="copyOut()">複製摘要</button>
+  <button type="button" class="sec" id="wa">用 WhatsApp 傳出</button>
+</div>
+</main>
+<footer>只供呢次行程對齊用</footer>
+<script>
+const sapporo = [
+  ['大通公園燈飾 + 聖誕市集','夜晚必去，免費'],
+  ['薄野夜食','拉麵／湯咖哩／燒肉'],
+  ['二條市場／場外市場海鮮','朝早蟹、海膽、丼'],
+  ['鐘樓 + 電視塔／JR塔','經典打卡'],
+  ['狸小路買手信','室內拱廊'],
+  ['白色戀人公園','工廠＋冬日燈'],
+  ['札幌啤酒園／博物館','紅磚廠房試酒燒肉']
+];
+const box = (id, items, name) => {
+  document.getElementById(id).innerHTML = items.map(t =>
+    `<label class="opt"><input type="checkbox" name="${name}" value="${t}"> ${t}</label>`
+  ).join('');
+};
+document.getElementById('sapporo').innerHTML = sapporo.map((r,i)=>`
+  <label class="q">${r[0]}</label>
+  <div class="hint">${r[1]}</div>
+  <div class="scale">
+    <label><input type="radio" name="sp${i}" value="唔要" required> 唔要</label>
+    <label><input type="radio" name="sp${i}" value="可去"> 可去</label>
+    <label><input type="radio" name="sp${i}" value="超想"> 超想</label>
+  </div>`).join('');
+box('otaru_int',['運河行雪','青の運河夜燈','運河遊船','壽司／海鮮丼','北一硝子／音樂盒','LeTAO','天狗山夜景'],'oi');
+box('extra',['手稻滑雪半日','藻岩山夜景纜車','白色戀人公園','札幌啤酒園燒肉','唔好再加留壽都／俱知安'],'ex');
+box('food',['海鮮／壽司','札幌味噌拉麵','湯咖哩','成吉思汗／燒肉','聖誕市集小吃'],'fd');
+function checked(name){
+  return [...document.querySelectorAll(`[name="${name}"]:checked`)].map(x=>x.value).join('、') || '（無）';
+}
+function val(name){
+  const el = document.querySelector(`[name="${name}"]:checked`) || document.querySelector(`[name="${name}"]`);
+  return el ? el.value : '';
+}
+document.getElementById('f').onsubmit = (e) => {
+  e.preventDefault();
+  const lines = ['北海道冬遊取態','名：' + val('name'),'','【札幌】'];
+  sapporo.forEach((r,i)=> lines.push(r[0] + '：' + val('sp'+i)));
+  lines.push('節奏：' + val('pace'));
+  lines.push('');
+  lines.push('【小樺】' + val('otaru'));
+  lines.push('住邊：' + val('otaru_stay'));
+  lines.push('興趣：' + checked('oi'));
+  lines.push('');
+  lines.push('【定山溪】' + val('jozan'));
+  lines.push('玩法：' + val('jozan_how') + '　紋身：' + val('tattoo'));
+  lines.push('');
+  lines.push('可選：' + checked('ex'));
+  lines.push('想食：' + checked('fd'));
+  lines.push('行路：' + val('walk'));
+  lines.push('滑雪：' + val('ski') + '／意欲' + val('ski_level'));
+  lines.push('12/8：' + val('leave'));
+  lines.push('預算：' + val('budget'));
+  lines.push('備註：' + (document.querySelector('[name=note]').value || '無'));
+  const text = lines.join('\n');
+  document.getElementById('out').textContent = text;
+  document.getElementById('done').style.display = 'block';
+  document.getElementById('wa').onclick = () => {
+    location.href = 'https://wa.me/?text=' + encodeURIComponent(text);
+  };
+  document.getElementById('done').scrollIntoView({behavior:'smooth'});
+};
+function copyOut(){
+  navigator.clipboard.writeText(document.getElementById('out').textContent);
+  alert('已複製');
+}
+</script>
+</body>
+</html>
